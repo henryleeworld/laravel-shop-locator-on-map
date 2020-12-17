@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,12 +22,12 @@ Route::get('/home', function () {
     return redirect()->route('admin.shops.index');
 });
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('shop/{shop}', 'HomeController@show')->name('shop');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('shop/{shop}', [HomeController::class, 'show'])->name('shop');
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');

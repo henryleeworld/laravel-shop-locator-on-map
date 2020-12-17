@@ -1,15 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Category extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    public $table = 'roles';
+    public $table = 'categories';
 
     protected $dates = [
         'created_at',
@@ -18,19 +19,14 @@ class Role extends Model
     ];
 
     protected $fillable = [
-        'title',
+        'name',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public function users()
+    public function shops()
     {
-        return $this->belongsToMany(User::class);
-    }
-
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Shop::class);
     }
 }

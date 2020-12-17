@@ -1,7 +1,10 @@
 <?php
 
-use App\Category;
-use App\Role;
+namespace Database\Seeders;
+
+use App\Models\Category;
+use App\Models\Role;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ShopsTableSeeder extends Seeder
@@ -13,7 +16,7 @@ class ShopsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Factory::create();
         $pictures = collect(range(1,11));
         $users = Role::findOrFail(2)->users;
         $categories = Category::all()->pluck('id');
@@ -75,17 +78,17 @@ class ShopsTableSeeder extends Seeder
         foreach($users as $user)
         {
             $shop = [
-                'name' => $faker->company,
+                'name'        => $faker->company,
                 'description' => $faker->paragraph,
-                'address' => $faker->address,
-                'active' => 1,
+                'address'     => $faker->address,
+                'active'      => 1,
             ];
             $shop = $user->shops()->create(array_merge($shop, $addresses[$currentAddress++]));
             $shop->categories()->sync($categories->random(rand(0,3)));
 
             foreach($pictures->random(rand(1,3)) as $index)
             {
-                $shop->addMediaFromUrl(public_path("assets/images/shops/a$index.jpg"))->toMediaCollection('photos');
+                $shop->addMediaFromUrl(asset("assets/images/shops/a$index.jpg"))->toMediaCollection('photos');
             }
         }
     }

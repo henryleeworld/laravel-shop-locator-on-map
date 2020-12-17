@@ -1,6 +1,8 @@
 <?php
 
-use App\Shop;
+namespace Database\Seeders;
+
+use App\Models\Shop;
 use Illuminate\Database\Seeder;
 
 class DayShopTableSeeder extends Seeder

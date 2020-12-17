@@ -1,13 +1,16 @@
 <?php
 
-use App\User;
+namespace Database\Seeders;
+
+use App\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Factory::create();
         $users = [
             [
                 'id'             => 1,

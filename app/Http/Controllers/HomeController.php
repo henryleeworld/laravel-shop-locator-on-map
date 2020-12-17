@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Shop;
+use App\Models\Category;
+use App\Models\Shop;
 
 class HomeController extends Controller
 {

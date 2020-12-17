@@ -1,6 +1,8 @@
 <?php
 
-use App\Day;
+namespace Database\Seeders;
+
+use App\Models\Day;
 use Illuminate\Database\Seeder;
 use Spatie\OpeningHours\Day as SpatieDay;
 
