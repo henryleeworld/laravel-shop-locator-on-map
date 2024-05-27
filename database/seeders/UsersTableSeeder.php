@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class UsersTableSeeder extends Seeder
                 'id'             => 1,
                 'name'           => 'Admin',
                 'email'          => 'admin@admin.com',
-                'password'       => '$2y$10$vUIzDlvfpu2yOATsPYcPaOTY/zgbgwViLIWSfZxSlmRBFV.g/fmOW',
+                'password'       => Hash::make('password')
                 'remember_token' => null,
             ],
         ];
@@ -28,7 +29,7 @@ class UsersTableSeeder extends Seeder
             User::create([
                 'name' => $faker->unique()->name,
                 'email' => "user$id@user$id.com",
-                'password' => bcrypt('password'),
+                'password' => Hash::make('password'),
             ]);
         }
     }
